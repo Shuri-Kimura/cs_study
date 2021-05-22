@@ -22,6 +22,7 @@ int main(void)
     }
     //from doll to cent
     int cents = round(change * 100);
+    res = cents;
 
     //calculate quoter number
     if (cents >= 25)
