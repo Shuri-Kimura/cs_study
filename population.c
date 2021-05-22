@@ -3,6 +3,7 @@
 
 int main(void)
 {
+    //set number
     int start_size, end_size;
     int years = 0;
 
@@ -30,7 +31,7 @@ int main(void)
         }
         else
         {
-            printf("Please type number of %i or greater\n",start_size);
+            printf("Please type number of %i or greater\n", start_size);
         }
     }
 
@@ -38,7 +39,8 @@ int main(void)
     // TODO: Calculate number of years until we reach threshold
     while (true)
     {
-        if (start_size >= end_size){
+        if (start_size >= end_size)
+        {
             break;
         }
         start_size += (start_size / 3) - (start_size / 4);
@@ -46,5 +48,5 @@ int main(void)
     }
 
     // TODO: Print number of years
-    printf("Years: %i\n",years);
+    printf("Years: %i\n", years);
 }
