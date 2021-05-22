@@ -38,9 +38,11 @@ int main(void)
     // TODO: Calculate number of years until we reach threshold
     while (true)
     {
+        if (start_size >= end_size){
+            break;
+        }
         start_size += (start_size / 3) - (start_size / 4);
         years += 1;
-        if (start_size >= end_size)break;
     }
 
     // TODO: Print number of years
