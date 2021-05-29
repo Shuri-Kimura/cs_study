@@ -10,7 +10,7 @@ int cal_coleman(string text)
     int word_num = 0;
     for (int i = 0, n = strlen(text); i < n; i++) //char by char from text
     {
-        if( (text[i] >= 'a' && text[i] <='z') || (text[i] >= 'A' && text[i] <='Z')) //cal char_num
+        if ((text[i] >= 'a' && text[i] <= 'z') || (text[i] >= 'A' && text[i] <= 'Z')) //cal char_num
         {
             char_num += 1;
         }
@@ -29,7 +29,7 @@ int cal_coleman(string text)
     double S = sentence * ave;
     double index = 0.0588 * L - 0.296 * S - 15.8;
     //near integer
-    int result = (int) (index + 0.5);
+    int result = (int)(index + 0.5);
     return result;
 }
 
@@ -49,6 +49,6 @@ int main()
     }
     else //case 1 <= score < 16
     {
-        printf("Grade %d\n",score);
+        printf("Grade %d\n", score);
     }
 }
