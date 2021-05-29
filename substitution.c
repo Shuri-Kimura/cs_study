@@ -21,13 +21,31 @@ void changer (string text, string key)
     }
 }
 
+
+bool check_dup(string text, int size){
+    bool flag = true;
+    for (int i = 0; i < size-1; i++)
+    {
+        for (int j = 0; j < size; j++)
+        {
+            flag = flag && (text[i] != text[i+1]);
+            if (flag == false){
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+
 int main(int argc, string argv[])
 {
     if (argc == 2)
     {
         int counter = 0;
         bool flag;
-        for (int i = 0, n = strlen(argv[1]); i < n; i++) //char by char from key
+        int  n = strlen(argv[1]);
+        for (int i = 0; i < n; i++) //char by char from key
         {
             if ((argv[1][i] >= 'a' && argv[1][i] <= 'z') || (argv[1][i] >= 'A' && argv[1][i] <= 'Z')) //check and transform char
             {
@@ -44,6 +62,8 @@ int main(int argc, string argv[])
         {
             flag = true;
         }
+
+        flag = flag && check_dup(argv[1], n);
 
         if (flag == true)
         {
