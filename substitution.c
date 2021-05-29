@@ -27,13 +27,10 @@ bool check_dup(string text, int size) //check duplication
     bool flag = true;
     for (int i = 0; i < size - 1; i++)
     {
-        for (int j = 0; j < size; j++)
+        flag = flag && (text[i] != text[i+1]);
+        if (flag == false)
         {
-            flag = flag && (text[i] != text[i + 1]);
-            if (flag == false)
-            {
-                return false;
-            }
+            return false;
         }
     }
     return true;
