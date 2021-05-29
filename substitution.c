@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 
-void changer (string text, string key)
+void changer(string text, string key) //change from char to key
 {
     for (int i = 0, n = strlen(text); i < n; i++) //char by char from key
     {
@@ -22,14 +22,16 @@ void changer (string text, string key)
 }
 
 
-bool check_dup(string text, int size){
+bool check_dup(string text, int size) //check duplication
+{
     bool flag = true;
-    for (int i = 0; i < size-1; i++)
+    for (int i = 0; i < size - 1; i++)
     {
         for (int j = 0; j < size; j++)
         {
-            flag = flag && (text[i] != text[i+1]);
-            if (flag == false){
+            flag = flag && (text[i] != text[i + 1]);
+            if (flag == false)
+            {
                 return false;
             }
         }
@@ -37,7 +39,8 @@ bool check_dup(string text, int size){
     return true;
 }
 
-void selectionSort(string data, int left, int right) {
+void selectionSort(string data, int left, int right) //sort alphabet
+{
     int start;
     int i;
     char min;
@@ -45,7 +48,8 @@ void selectionSort(string data, int left, int right) {
     char tmp;
 
     /* データ数が１の場合はソート済みなのでソート終了 */
-    if (left == right) {
+    if (left == right)
+    {
         return;
     }
 
@@ -53,22 +57,26 @@ void selectionSort(string data, int left, int right) {
     start = left;
 
     /* ソート範囲を狭めながらソート処理 */
-    for (start = left; start < right; start++) {
+    for (start = left; start < right; start++)
+    {
 
         /* ひとまずソート範囲の先頭を最小値とみなす */
         i_min = start;
         min = data[i_min];
 
         /* ソート範囲の中から最小値を探索 */
-        for (i = start; i <= right; i++) {
-            if (min > data[i]) {
+        for (i = start; i <= right; i++)
+        {
+            if (min > data[i])
+            {
                 /* 最小値とその値を持つインデックスを更新 */
                 min = data[i];
                 i_min = i;
             }
         }
 
-        if (start != i_min) {
+        if (start != i_min)
+        {
 
             /* ソート範囲の先頭と最小値を交換 */
             tmp = data[start];
@@ -107,23 +115,23 @@ int main(int argc, string argv[])
         }
 
 
-        selectionSort(check_key, 0, n-1);//check_key sort
+        selectionSort(check_key, 0, n - 1); //check_key sort
         flag = flag && check_dup(check_key, n);
 
         if (flag == true)
         {
             string text = get_string("plaintext: ");
             changer(text, argv[1]);
-            printf("ciphertext: %s\n",text);
+            printf("ciphertext: %s\n", text);
             return 0;
         }
-        else
+        else //key error
         {
             printf("Key must contain 26 characters.\n");
             return 1;
         }
     }
-    else
+    else //argument error
     {
         printf("Usage: ./substitution key\n");
         return 1;
