@@ -63,7 +63,7 @@ int main(int argc, string argv[])
             flag = true;
         }
 
-        flag = flag && check_dup(argv[1], n);
+        //flag = flag && check_dup(argv[1], n);
 
         if (flag == true)
         {
