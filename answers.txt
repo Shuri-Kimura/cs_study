@@ -1,0 +1,11 @@
+sort1 uses: bubble
+
+How do you know?: sortedが早く、reverseが遅い
+
+sort2 uses:  merge
+
+How do you know?: reverseが明らかに一番早い
+
+sort3 uses: selection
+
+How do you know?: 消去法
