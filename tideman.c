@@ -203,6 +203,7 @@ void lock_pairs (void)
         bool flag = true;
         for (int j = 0; j <= n; j++)
         {
+            printf("A ");
             printf("list : %d\n",list[j]);
             if (list[j] == pairs[i].loser)
             {
