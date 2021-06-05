@@ -1,4 +1,4 @@
-sort1 uses: babble
+sort1 uses: bubble
 
 How do you know?: sortedが早く、reverseが遅い
 
