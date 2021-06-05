@@ -201,7 +201,7 @@ void lock_pairs (void)
         // printf("%d\n",pairs[i].winner);
         // printf("%d\n",pairs[i].loser);
         bool flag = true;
-        for (int j = 0; j < candidate_count; j++)
+        for (int j = 0; j <= n; j++)
         {
             printf("list : %d\n",list[j]);
             if (list[j] == pairs[i].loser)
