@@ -117,9 +117,12 @@ bool vote(int rank, string name, int ranks[])
 void record_preferences(int ranks[])
 {
     // TODO
-    for (int i = 0; i < candidate_count - 1; i++){
-        for (int j = i+1; j < candidate_count; j++)
-        preferences[ranks[i]][ranks[j]] += 1;
+    for (int i = 0; i < candidate_count - 1; i++)
+    {
+        for (int j = i + 1; j < candidate_count; j++)
+        {
+            preferences[ranks[i]][ranks[j]] += 1;
+        }
     }
     // printf("%d\n",preferences[0][0]);
     // printf("%d\n",preferences[0][1]);
@@ -140,8 +143,8 @@ void print_pairs(pair pairs1[], int n)
 {
     for (int i = 0; i < n; i++)
     {
-        printf("winner: %d\n",pairs1[i].winner);
-        printf("loser: %d\n",pairs1[i].loser);
+        printf("winner: %d\n", pairs1[i].winner);
+        printf("loser: %d\n", pairs1[i].loser);
         printf("\n");
     }
     printf("\n");
@@ -180,18 +183,19 @@ void sort_pairs(void)
             if (preferences[pairs[i].winner][pairs[i].loser] < preferences[pairs[i + 1].winner][pairs[i + 1].loser])
             {
                 tmp = pairs[i];
-                pairs[i] = pairs[i+1];
-                pairs[i+1] = tmp;
+                pairs[i] = pairs[i + 1];
+                pairs[i + 1] = tmp;
                 exchange++;
             }
         }
-    } while (exchange > 0);
+    }
+    while (exchange > 0);
     //print_pairs(pairs,pair_count);
     return;
 }
 
 // Lock pairs into the candidate graph in order, without creating cycles
-void lock_pairs (void)
+void lock_pairs(void)
 {
     // TODO
     int list[candidate_count];
@@ -204,8 +208,8 @@ void lock_pairs (void)
         bool flag = true;
         for (int j = 0; j <= n; j++)
         {
-            printf("A ");
-            printf("list : %d\n",list[j]);
+            // printf("A ");
+            // printf("list : %d\n", list[j]);
             if (list[j] == pairs[i].loser)
             {
                 flag = false;
@@ -222,11 +226,14 @@ void lock_pairs (void)
     return;
 }
 
-void print (bool flag)
+void print(bool flag)
 {
-    if (flag == true){
+    if (flag == true)
+    {
         printf("true\n");
-    }else  {
+    }
+    else
+    {
         printf("false\n");
     }
 }
@@ -254,7 +261,8 @@ void print_winner(void)
                 exchange++;
             }
         }
-    } while (exchange > 0);
+    }
+    while (exchange > 0);
     printf("%s\n", candidates[winner]);
     return;
 }
