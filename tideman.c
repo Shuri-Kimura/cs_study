@@ -194,7 +194,7 @@ void sort_pairs(void)
 void lock_pairs (void)
 {
     // TODO
-    for (int i = 0; i < pair_count - 1; i++)
+    for (int i = 0; i < pair_count - 2; i++)
     {
         // printf("%d\n",pairs[i].winner);
         // printf("%d\n",pairs[i].loser);
