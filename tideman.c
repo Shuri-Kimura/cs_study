@@ -208,6 +208,7 @@ void lock_pairs (void)
                 flag = false;
                 break;
             }
+            j++;
         }
         if (flag == true) locked[pairs[i].winner][pairs[i].loser] = true;
     }
