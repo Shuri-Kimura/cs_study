@@ -194,36 +194,40 @@ void sort_pairs(void)
     return;
 }
 
+bool has_cycle_helper(int index, bool visited[])
+{
+    if (visited[index])
+        return true;
+    visited[index] = true;
+    for (int i = 0; i < candidate_count; i++)
+    {
+        if (locked[index][i] && has_cycle_helper(i, visited))
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool has_cycle(int strating_index)
+{
+    bool visited[candidate_count];
+    for (int i = 0; i < candidate_count; i++)
+        visited[i] = false;
+        return has_cycle_helper(starting_index, visited);
+}
+
 // Lock pairs into the candidate graph in order, without creating cycles
 void lock_pairs(void)
 {
     // TODO
-    int list[candidate_count];
-    int n = 0;
-    list[0] = pairs[0].winner;
     for (int i = 0; i < pair_count; i++)
     {
-        // printf("%d\n",pairs[i].winner);
-        // printf("%d\n",pairs[i].loser);
-        bool flag = true;
-        for (int j = 0; j <= n; j++)
-        {
-            // printf("A ");
-            // printf("list : %d\n", list[j]);
-            if (list[j] == pairs[i].loser)
-            {
-                flag = false;
-                break;
-            }
-        }
-        if (flag == true)
-        {
-            locked[pairs[i].winner][pairs[i].loser] = true;
-            list[n] = pairs[i].winner;
-            n++;
-        }
+        locked[pairs[i].winner][pairs[i].loser] = true;
+
+        if (has_cycle(i))
+            locked[pairs[i].winner][pairs[i].loser] = false;
     }
-    return;
 }
 
 void print(bool flag)
