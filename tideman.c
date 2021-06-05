@@ -201,7 +201,7 @@ void lock_pairs(void)
     int list[candidate_count];
     int n = 0;
     list[0] = pairs[0].winner;
-    for (int i = 0; i < pair_count - 2; i++)
+    for (int i = 0; i < pair_count - 1; i++)
     {
         // printf("%d\n",pairs[i].winner);
         // printf("%d\n",pairs[i].loser);
