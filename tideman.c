@@ -200,16 +200,15 @@ void lock_pairs (void)
     {
         // printf("%d\n",pairs[i].winner);
         // printf("%d\n",pairs[i].loser);
-        int j = 0;
         bool flag = true;
-        while(list[j] != 0)
+        for (int j = 0; j < candidate_count; j++)
         {
+            printf("list : %d\n",list[j]);
             if (list[j] == pairs[i].loser)
             {
                 flag = false;
                 break;
             }
-            j++;
         }
         if (flag == true)
         {
