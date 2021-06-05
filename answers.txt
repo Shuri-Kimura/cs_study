@@ -1,11 +1,11 @@
-sort1 uses: バブルソート
+sort1 uses: babble
 
 How do you know?: sortedが早く、reverseが遅い
 
-sort2 uses:  マージソート
+sort2 uses:  merge
 
 How do you know?: reverseが明らかに一番早い
 
-sort3 uses: 選択ソート
+sort3 uses: selection
 
 How do you know?: 消去法
