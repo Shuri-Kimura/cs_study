@@ -1,0 +1,11 @@
+sort1 uses: バブルソート
+
+How do you know?: sortedが早く、reverseが遅い
+
+sort2 uses:  マージソート
+
+How do you know?: reverseが明らかに一番早い
+
+sort3 uses: 選択ソート
+
+How do you know?: 消去法
