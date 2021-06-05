@@ -221,7 +221,7 @@ bool has_cycle(int starting_index)
 void lock_pairs(void)
 {
     // TODO
-    for (int i = 0; i < pair_count; i++)
+    for (int i = 0; i < pair_count - 1; i++)
     {
         locked[pairs[i].winner][pairs[i].loser] = true;
 
