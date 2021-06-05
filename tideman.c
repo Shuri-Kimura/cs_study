@@ -196,6 +196,7 @@ void lock_pairs (void)
     // TODO
     int list[candidate_count];
     int n = 0;
+    list[0] = pairs[0].winner;
     for (int i = 0; i < pair_count - 2; i++)
     {
         // printf("%d\n",pairs[i].winner);
@@ -213,9 +214,9 @@ void lock_pairs (void)
         }
         if (flag == true)
         {
-        locked[pairs[i].winner][pairs[i].loser] = true;
-        list[n] = pairs[i].loser;
-        n++;
+            locked[pairs[i].winner][pairs[i].loser] = true;
+            list[n] = pairs[i].loser;
+            n++;
         }
     }
     return;
