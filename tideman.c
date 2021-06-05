@@ -214,7 +214,7 @@ void lock_pairs (void)
         if (flag == true)
         {
         locked[pairs[i].winner][pairs[i].loser] = true;
-        list[n] = pairs[i].winner;
+        list[n] = pairs[i].loser;
         n++;
         }
     }
