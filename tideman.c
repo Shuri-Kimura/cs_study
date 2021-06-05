@@ -194,12 +194,22 @@ void sort_pairs(void)
 void lock_pairs (void)
 {
     // TODO
+    int list[candidate_count];
     for (int i = 0; i < pair_count - 2; i++)
     {
         // printf("%d\n",pairs[i].winner);
         // printf("%d\n",pairs[i].loser);
-        if (pairs[0].winner == pairs[i].loser) break;
-        locked[pairs[i].winner][pairs[i].loser] = true;
+        int j = 0;
+        bool flag = true;
+        while(list[j] != 0)
+        {
+            if (list[j] == pairs[i].loser)
+            {
+                flag = false;
+                break;
+            }
+        }
+        if (flag == true) locked[pairs[i].winner][pairs[i].loser] = true;
     }
     return;
 }
