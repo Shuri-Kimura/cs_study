@@ -209,12 +209,12 @@ bool has_cycle_helper(int index, bool visited[])
     return false;
 }
 
-bool has_cycle(int strating_index)
+bool has_cycle(int starting_index)
 {
     bool visited[candidate_count];
     for (int i = 0; i < candidate_count; i++)
         visited[i] = false;
-        return has_cycle_helper(starting_index, visited);
+    return has_cycle_helper(starting_index, visited);
 }
 
 // Lock pairs into the candidate graph in order, without creating cycles
