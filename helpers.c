@@ -34,13 +34,10 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
     {
         for (int j = 0; j < width; j++)
         {
-            uint8_t Blue, Green, Red, average;
-            Blue = image[i][j].rgbtBlue;
-            Green = image[i][j].rgbtGreen;
-            Red = image[i][j].rgbtRed;
+            uint8_t average;
             average = ((image[i][j].rgbtBlue + image[i][j].rgbtGreen + image[i][j].rgbtRed) / 3.0) + 0.5;
             image[i][j].rgbtBlue = image[i][j].rgbtGreen = image[i][j].rgbtRed = average;
-            printf("%u\n",average);
+            // printf("%u\n",average);
             // printf("0x%u\n", Blue);
         }
     }
@@ -54,14 +51,11 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
     {
         for (int j = 0; j < width; j++)
         {
-            uint8_t Blue, Green, Red, sepiaRed, sepiaGreen, sepiaBlue;
-            Blue = image[i][j].rgbtBlue;
-            Green = image[i][j].rgbtGreen;
-            Red = image[i][j].rgbtRed;
+            uint8_t sepiaRed, sepiaGreen, sepiaBlue;
 
-            sepiaRed = 0.393 * Red + 0.769 * Green + 0.189 * Blue;
-            sepiaGreen = 0.349 * Red + 0.686 * Green + 0.168 * Blue;
-            sepiaBlue = 0.272 * Red + 0.534 * Green + 0.131 * Blue;
+            sepiaRed = (0.393 * image[i][j].rgbtRed + 0.769 * image[i][j].rgbtGreen + 0.189 * image[i][j].rgbtBlue) + 0.5;
+            sepiaGreen = (0.349 * image[i][j].rgbtRed + 0.686 * image[i][j].rgbtGreen + 0.168 * image[i][j].rgbtBlue) + 0.5;
+            sepiaBlue = (0.272 * image[i][j].rgbtRed + 0.534 * image[i][j].rgbtGreen + 0.131 * image[i][j].rgbtBlue) + 0.5;
             if (sepiaBlue > 255) sepiaBlue = 255;
             if (sepiaGreen > 255) sepiaGreen = 255;
             if (sepiaRed > 255) sepiaRed = 255;
