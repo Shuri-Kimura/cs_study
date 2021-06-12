@@ -28,6 +28,7 @@
 // }
 
 // Convert image to grayscale
+
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
 {
     for (int i = 0; i < height; i++)
@@ -74,24 +75,38 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
 }
 
 
-void reverse(RGBTRIPLE image, int size)
-{
-    uint8_t tmp;
-    for (int i = 0; i < size / 2; i++)
-    {
-        tmp = image[i];
-        image[i] = image[size - i - 1];
-        image[size - i - 1] = tmp;
-    }
-}
+// void reverse(RGBTRIPLE image[g_size], int size)
+// {
+//     uint8_t tmp;
+//     for (int i = 0; i < size / 2; i++)
+//     {
+//         tmp = image[i];
+//         image[i] = image[size - i - 1];
+//         image[size - i - 1] = tmp;
+//     }
+//     return;
+// }
 
 // Reflect image horizontally
 void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
-
+    uint8_t tmp;
     for (int j = 0; j < height; j++)
     {
-        reverse(image[j], width);
+        for (int i = 0; i < width / 2; i++)
+        {
+            tmp = image[j][i].rgbtBlue;
+            image[j][i].rgbtBlue = image[j][width - i - 1].rgbtBlue;
+            image[j][width - i - 1].rgbtBlue = tmp;
+
+            tmp = image[j][i].rgbtGreen;
+            image[j][i].rgbtGreen = image[j][width - i - 1].rgbtGreen;
+            image[j][width - i - 1].rgbtGreen = tmp;
+
+            tmp = image[j][i].rgbtRed;
+            image[j][i].rgbtRed = image[j][width - i - 1].rgbtRed;
+            image[j][width - i - 1].rgbtRed = tmp;
+        }
     }
 
     return;
