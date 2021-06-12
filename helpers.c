@@ -43,6 +43,11 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
     }
     return;
 }
+double check_max(double n)
+{
+    if (n > 255) return 255;
+    return n;
+}
 
 // Convert image to sepia
 void sepia(int height, int width, RGBTRIPLE image[height][width])
@@ -53,14 +58,10 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
         {
             uint8_t sepiaRed, sepiaGreen, sepiaBlue;
 
-            sepiaRed = (0.393 * image[i][j].rgbtRed + 0.769 * image[i][j].rgbtGreen + 0.189 * image[i][j].rgbtBlue) + 0.5;
-            sepiaGreen = (0.349 * image[i][j].rgbtRed + 0.686 * image[i][j].rgbtGreen + 0.168 * image[i][j].rgbtBlue) + 0.5;
-            sepiaBlue = (0.272 * image[i][j].rgbtRed + 0.534 * image[i][j].rgbtGreen + 0.131 * image[i][j].rgbtBlue) + 0.5;
-            if (sepiaBlue > 255) sepiaBlue = 255;
-            if (sepiaGreen > 255) sepiaGreen = 255;
-            if (sepiaRed > 255) sepiaRed = 255;
+            sepiaRed = check_max((0.393 * image[i][j].rgbtRed + 0.769 * image[i][j].rgbtGreen + 0.189 * image[i][j].rgbtBlue) + 0.5);
+            sepiaGreen = check_max((0.349 * image[i][j].rgbtRed + 0.686 * image[i][j].rgbtGreen + 0.168 * image[i][j].rgbtBlue) + 0.5);
+            sepiaBlue = check_max((0.272 * image[i][j].rgbtRed + 0.534 * image[i][j].rgbtGreen + 0.131 * image[i][j].rgbtBlue) + 0.5);
             // sepiaBlue = printf("%x\n",sepiaBlue);
-            // break;
 
             image[i][j].rgbtBlue = sepiaBlue;
             image[i][j].rgbtGreen = sepiaGreen;
