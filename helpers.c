@@ -43,6 +43,7 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
     }
     return;
 }
+
 double check_max(double n)
 {
     if (n > 255) return 255;
@@ -72,9 +73,27 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
     return;
 }
 
+
+void reverse(RGBTRIPLE image, int size)
+{
+    uint8_t tmp;
+    for (int i = 0; i < size / 2; i++)
+    {
+        tmp = image[i];
+        image[i] = image[size - i - 1];
+        image[size - i - 1] = tmp;
+    }
+}
+
 // Reflect image horizontally
 void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
+
+    for (int j = 0; j < height; j++)
+    {
+        reverse(image[j], width);
+    }
+
     return;
 }
 
