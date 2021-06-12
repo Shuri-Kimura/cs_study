@@ -115,5 +115,54 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 // Blur image
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
+    RGBTRIPLE image_[height][width];
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            if (i == 0 && j == 0)
+            {
+                image_[i][j].rgbtRed = (image[i + 1][j + 1].rgbtRed + image[i][j + 1].rgbtRed + image[i + 1][j].rgbtRed / 3.0) + 0.5;
+                image_[i][j].rgbtGreen = (image[i + 1][j + 1].rgbtGreen + image[i][j + 1].rgbtGreen + image[i + 1][j].rgbtGreen / 3.0) + 0.5;
+                image_[i][j].rgbtBlue = (image[i + 1][j + 1].rgbtBlue + image[i][j + 1].rgbtBlue + image[i + 1][j].rgbtBlue / 3.0) + 0.5;
+            }
+            else if (i == 0)
+            {
+                image_[i][j].rgbtRed = ((image[i][j - 1].rgbtRed + image[i + 1][j - 1].rgbtRed + image[i + 1][j + 1].rgbtRed + image[i + 1][j].rgbtRed + + image[i + 1][j - 1].rgbtRed) / 5.0) + 0.5;
+                image_[i][j].rgbtGreen = ((image[i][j - 1].rgbtGreen + image[i + 1][j - 1].rgbtGreen + image[i + 1][j + 1].rgbtGreen + image[i + 1][j].rgbtGreen + + image[i + 1][j - 1].rgbtGreen) / 5.0) + 0.5;
+                image_[i][j].rgbtBlue = ((image[i][j - 1].rgbtBlue + image[i + 1][j - 1].rgbtBlue + image[i + 1][j + 1].rgbtBlue + image[i + 1][j].rgbtBlue + + image[i + 1][j - 1].rgbtBlue) / 5.0) + 0.5;
+            }
+            else if (j == 0)
+            {
+                image_[i][j].rgbtRed = ((image[i - 1][j].rgbtRed + image[i - 1][j + 1].rgbtRed + image[i + 1][j + 1].rgbtRed + image[i][j + 1].rgbtRed + + image[i - 1][j + 1].rgbtRed) / 5.0) + 0.5;
+                image_[i][j].rgbtGreen = ((image[i - 1][j].rgbtGreen + image[i - 1][j + 1].rgbtGreen + image[i + 1][j + 1].rgbtGreen + image[i][j + 1].rgbtGreen + + image[i - 1][j + 1].rgbtGreen) / 5.0) + 0.5;
+                image_[i][j].rgbtBlue = ((image[i - 1][j].rgbtBlue + image[i - 1][j + 1].rgbtBlue + image[i + 1][j + 1].rgbtBlue + image[i][j + 1].rgbtBlue + + image[i - 1][j + 1].rgbtBlue) / 5.0) + 0.5;
+            }
+            else
+            {
+                image_[i][j].rgbtRed = ((image[i - 1][j - 1].rgbtRed + image[i][j - 1].rgbtRed + image[i + 1][j - 1].rgbtRed + image[i - 1][j].rgbtRed + image[i - 1][j + 1].rgbtRed
+                                        + image[i + 1][j + 1].rgbtRed + image[i + 1][j].rgbtRed + + image[i + 1][j - 1].rgbtRed) / 8.0) + 0.5;
+                image_[i][j].rgbtGreen = ((image[i - 1][j - 1].rgbtGreen + image[i][j - 1].rgbtGreen + image[i + 1][j - 1].rgbtGreen + image[i - 1][j].rgbtGreen + image[i - 1][j + 1].rgbtGreen
+                                        + image[i + 1][j + 1].rgbtGreen + image[i + 1][j].rgbtGreen + + image[i + 1][j - 1].rgbtGreen) / 8.0) + 0.5;
+                image_[i][j].rgbtBlue = ((image[i - 1][j - 1].rgbtBlue + image[i][j - 1].rgbtBlue + image[i + 1][j - 1].rgbtBlue + image[i - 1][j].rgbtBlue + image[i - 1][j + 1].rgbtBlue
+                                        + image[i + 1][j + 1].rgbtBlue + image[i + 1][j].rgbtBlue + + image[i + 1][j - 1].rgbtBlue) / 8.0) + 0.5;
+
+            }
+        }
+    }
+
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            image[i][j].rgbtBlue = image_[i][j].rgbtBlue;
+            image[i][j].rgbtGreen = image_[i][j].rgbtGreen;
+            image[i][j].rgbtRed = image_[i][j].rgbtRed;
+            // printf("%u\n",average);
+            // printf("0x%u\n", Blue);
+        }
+    }
+
+
     return;
 }
