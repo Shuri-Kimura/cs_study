@@ -3,29 +3,29 @@
 #include <math.h>
 #include <string.h>
 
-unit8_t tosix(int L)
-{
-    char xfin[4], x0[2], x1[2];
-    /*16進数の計算*/
-    xv0 = (int)(d/(pow(16,0)))%16; //16^0の位
-    xv1 = (int)(d/(pow(16,1)))%16; //16^1の位
+// unit8_t tosix(int L)
+// {
+//     char xfin[4], x0[2], x1[2];
+//     /*16進数の計算*/
+//     xv0 = (int)(d/(pow(16,0)))%16; //16^0の位
+//     xv1 = (int)(d/(pow(16,1)))%16; //16^1の位
 
-    for(L=0; L<16; L=L+1)
-    {
-        if(xv0==L)
-        {
-          strncpy(x0,x+L,1); //x0に、配列xのL番めからの値を1つ分代入する。
-        }
-        if(xv1==L)
-        {
-          strncpy(x1,x+L,1); //x1に、配列xのL番めからの値を1つ分代入する。
-        }
-    }
+//     for(L=0; L<16; L=L+1)
+//     {
+//         if(xv0==L)
+//         {
+//           strncpy(x0,x+L,1); //x0に、配列xのL番めからの値を1つ分代入する。
+//         }
+//         if(xv1==L)
+//         {
+//           strncpy(x1,x+L,1); //x1に、配列xのL番めからの値を1つ分代入する。
+//         }
+//     }
 
-    snprintf(xfin,6,"0x%s%s",x1,x0); //xfinにx4～x0を連結させたものを代入する
-    return
+//     snprintf(xfin,6,"0x%s%s",x1,x0); //xfinにx4～x0を連結させたものを代入する
+//     return
 
-}
+// }
 
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
