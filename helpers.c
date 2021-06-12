@@ -30,9 +30,9 @@
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
 {
-    for (int i = 0; i < height; i++)
+    for (int i = 0; i <= height; i++)
     {
-        for (int j = 0; j < width; j++)
+        for (int j = 0; j <= width; j++)
         {
             uint8_t Blue, Green, Red, average;
             Blue = image[i][j].rgbtBlue;
