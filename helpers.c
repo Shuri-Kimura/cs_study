@@ -126,19 +126,19 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 image_[i][j].rgbtGreen = ((image[i][j].rgbtGreen + image[i + 1][j + 1].rgbtGreen + image[i][j + 1].rgbtGreen + image[i + 1][j].rgbtGreen) / 4.0) + 0.5;
                 image_[i][j].rgbtBlue = ((image[i][j].rgbtBlue + image[i + 1][j + 1].rgbtBlue + image[i][j + 1].rgbtBlue + image[i + 1][j].rgbtBlue) / 4.0) + 0.5;
             }
-            else if (i == 0 && j == width - 1)
+            else if (i == 0 && (j == width - 1))
             {
                 image_[i][j].rgbtRed = ((image[i][j].rgbtRed + image[i + 1][j - 1].rgbtRed + image[i][j - 1].rgbtRed + image[i + 1][j].rgbtRed) / 4.0) + 0.5;
                 image_[i][j].rgbtGreen = ((image[i][j].rgbtGreen + image[i + 1][j - 1].rgbtGreen + image[i][j - 1].rgbtGreen + image[i + 1][j].rgbtGreen) / 4.0) + 0.5;
                 image_[i][j].rgbtBlue = ((image[i][j].rgbtBlue + image[i + 1][j - 1].rgbtBlue + image[i][j - 1].rgbtBlue + image[i + 1][j].rgbtBlue) / 4.0) + 0.5;
             }
-            else if (i == height - 1 && j == width - 1)
+            else if ((i == height - 1) && (j == width - 1))
             {
                 image_[i][j].rgbtRed = ((image[i][j].rgbtRed + image[i - 1][j - 1].rgbtRed + image[i][j - 1].rgbtRed + image[i - 1][j].rgbtRed) / 4.0) + 0.5;
                 image_[i][j].rgbtGreen = ((image[i][j].rgbtGreen + image[i - 1][j - 1].rgbtGreen + image[i][j - 1].rgbtGreen + image[i - 1][j].rgbtGreen) / 4.0) + 0.5;
                 image_[i][j].rgbtBlue = ((image[i][j].rgbtBlue + image[i - 1][j - 1].rgbtBlue + image[i][j - 1].rgbtBlue + image[i - 1][j].rgbtBlue) / 4.0) + 0.5;
             }
-            else if (i == height - 1 && j == 0)
+            else if ((i == height - 1) && j == 0)
             {
                 image_[i][j].rgbtRed = ((image[i][j].rgbtRed + image[i - 1][j + 1].rgbtRed + image[i][j + 1].rgbtRed + image[i + 1][j].rgbtRed) / 4.0) + 0.5;
                 image_[i][j].rgbtGreen = ((image[i][j].rgbtGreen + image[i - 1][j + 1].rgbtGreen + image[i - 1][j + 1].rgbtGreen + image[i][j + 1].rgbtGreen) / 4.0) + 0.5;
