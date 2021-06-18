@@ -41,18 +41,23 @@ bool check(const char *word)
     //ptr = malloc(sizeof(struct node));
     if (table[hashval] != NULL)
     {
-        struct node* ptr = table[hashval];
-        //printf("searchword: %s,hashval: %d\n",s_word,hashval);
-        while(ptr != NULL)
-        {
-            printf("<<<<<>>>>")
+        for (struct node *ptr = table[hashval]; ptr != NULL; ptr = ptr -> next)
             if (strcmp(ptr->word,s_word) == 0)
             {
                 //free(ptr);
                 return true;
             }
-            ptr = ptr->next;
-        }
+        // struct node* ptr = table[hashval];
+        // //printf("searchword: %s,hashval: %d\n",s_word,hashval);
+        // while(ptr != NULL)
+        // {
+        //     if (strcmp(ptr->word,s_word) == 0)
+        //     {
+        //         //free(ptr);
+        //         return true;
+        //     }
+        //     ptr = ptr->next;
+        // }
     }
     //free(ptr);
     return false;
