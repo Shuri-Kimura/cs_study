@@ -101,7 +101,7 @@ bool load(const char *dictionary)
     //     int hashval =  hash(word);
     //     //printf("dicword: %s,hashval: %d\n",word,hashval);
     //
-        strcpy(ptr->word, word);
+    //     strcpy(ptr->word, word);
     //     ptr->next = table[hashval];
     //     table[hashval] = ptr;
     // }
@@ -110,6 +110,7 @@ bool load(const char *dictionary)
     {
         return false;
     }
+    strcpy(ptr->word, word);
     ptr -> next = NULL;
     int hashval = hash(word);
     if (table[hashval] == NULL)
