@@ -81,6 +81,10 @@ bool load(const char *dictionary)
     {
         return false;
     }
+    for (int i = 0; i < N; i++)
+    {
+        table[i] = NULL;
+    }
     ptr = malloc(sizeof(struct node));
     while(fscanf(fp,"%s",word) != EOF)
     {
@@ -130,7 +134,6 @@ bool unload(void)
             ptr = ptr->next;
             free(tmp);
         }
-        free(ptr);
     }
     return true;
 
