@@ -35,7 +35,7 @@ bool check(const char *word)
 
     for (int i = 0; word[i] != '\0'; i++)
     {
-            s_word[i] = tolower(word[i]);
+            s_word[i] = tolower(s_word[i]);
     }
     int hashval = hash(s_word);
     ptr = malloc(sizeof(struct node));
