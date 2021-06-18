@@ -29,7 +29,7 @@ node *table[N];
 bool check(const char *word)
 {
     // TODO
-    struct node *ptr;
+    //struct node *ptr;
     char s_word[strlen(word)];
     strcpy(s_word, word);
 
@@ -38,19 +38,19 @@ bool check(const char *word)
             s_word[i] = tolower(s_word[i]);
     }
     int hashval = hash(s_word);
-    ptr = malloc(sizeof(struct node));
-    ptr = table[hashval];
+    //ptr = malloc(sizeof(struct node));
+    struct node* ptr = table[hashval];
     //printf("searchword: %s,hashval: %d\n",s_word,hashval);
     while(ptr != NULL)
     {
         if (strcmp(ptr->word,s_word) == 0)
         {
-            free(ptr);
+            //free(ptr);
             return true;
         }
         ptr = ptr->next;
     }
-    free(ptr);
+    //free(ptr);
     return false;
 }
 
@@ -94,7 +94,7 @@ bool load(const char *dictionary)
             word[i] = tolower(word[i]);
         }
         int hashval =  hash(word);
-        printf("dicword: %s,hashval: %d\n",word,hashval);
+        //printf("dicword: %s,hashval: %d\n",word,hashval);
         strcpy(ptr->word, word);
         ptr->next = table[hashval];
         table[hashval] = ptr;
