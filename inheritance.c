@@ -50,9 +50,9 @@ person *create_family(int generations)
         per->parents[1] = create_family(generations - 1);
         // TODO: Randomly assign child alleles based on parents
         int r0 = rand() % 2;
-        per -> alleles[0]= per->parents[0]->alleles[r0];
+        per -> alleles[0] = per->parents[0]->alleles[r0];
         int r1 = rand() % 2;
-        per -> alleles[1]= per->parents[1]->alleles[r1];
+        per -> alleles[1] = per->parents[1]->alleles[r1];
     }
 
     // Generation without parent data
@@ -68,7 +68,7 @@ person *create_family(int generations)
     }
 
     // TODO: Return newly created person
-    return NULL;
+    return per;
 }
 
 // Free `p` and all ancestors of `p`.
