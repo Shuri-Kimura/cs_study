@@ -45,7 +45,7 @@ bool check(const char *word)
         //printf("searchword: %s,hashval: %d\n",s_word,hashval);
         while(ptr != NULL)
         {
-            if (strcmp(ptr->word,s_word) == 0)
+            if (strcasecmp(ptr->word,s_word) == 0)
             {
                 //free(ptr);
                 return true;
@@ -84,6 +84,7 @@ bool load(const char *dictionary)
     {
         return false;
     }
+
     for (int i = 0; i < N; i++)
     {
         table[i] = NULL;
@@ -103,6 +104,12 @@ bool load(const char *dictionary)
         ptr->next = table[hashval];
         table[hashval] = ptr;
     }
+
+    // if (ptr == NULL)
+    // {
+    //     return false;
+    // }
+
     fclose(fp);
     loaded_dict = true;
     return true;
@@ -130,13 +137,13 @@ bool unload(void)
     for (int i = 0; i < N; i++)
     {
         node *ptr;
-        ptr = malloc(sizeof(node));
+        //ptr = malloc(sizeof(node));
         ptr = table[i];
         while (ptr != NULL)
         {
             node *tmp = ptr;
             ptr = ptr->next;
-            free(tmp);
+            //free(tmp);
         }
     }
     return true;
