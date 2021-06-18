@@ -40,6 +40,7 @@ bool check(const char *word)
     int hashval = hash(s_word);
     ptr = malloc(sizeof(struct node));
     ptr = table[hashval];
+    printf("searchword: %s\n",s_word);
     while(ptr != NULL)
     {
         if (ptr->word == s_word)
