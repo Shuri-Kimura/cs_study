@@ -95,17 +95,6 @@ bool load(const char *dictionary)
         node *ptr = malloc(sizeof(node));
          num_words++;
     //     for (int i =0; word[i] != '\0'; i++)
-    //     {
-    //         word[i] = tolower(word[i]);
-    //     }
-    //     int hashval =  hash(word);
-    //     //printf("dicword: %s,hashval: %d\n",word,hashval);
-    //
-    //     strcpy(ptr->word, word);
-    //     ptr->next = table[hashval];
-    //     table[hashval] = ptr;
-    // }
-
     if (ptr == NULL)
     {
         return false;
@@ -157,7 +146,7 @@ bool unload(void)
         {
             node *tmp = ptr;
             ptr = ptr->next;
-            //free(tmp);
+            free(tmp);
         }
     }
     return true;
