@@ -79,7 +79,6 @@ bool load(const char *dictionary)
     // TODO
     FILE *fp;
     char word[LENGTH + 1];
-    node *ptr;
     fp = fopen(dictionary,"r");
     if (fp == NULL)
     {
@@ -90,10 +89,10 @@ bool load(const char *dictionary)
     // {
     //     table[i] = NULL;
     // }
-    ptr = malloc(sizeof(node));
 
     while(fscanf(fp,"%s",word) != EOF)
     {
+        node *ptr = malloc(sizeof(node));
     //     num_words++;
     //     for (int i =0; word[i] != '\0'; i++)
     //     {
@@ -102,7 +101,7 @@ bool load(const char *dictionary)
     //     int hashval =  hash(word);
     //     //printf("dicword: %s,hashval: %d\n",word,hashval);
     //
-    strcpy(ptr->word, word);
+        strcpy(ptr->word, word);
     //     ptr->next = table[hashval];
     //     table[hashval] = ptr;
     // }
