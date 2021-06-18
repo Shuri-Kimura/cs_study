@@ -93,7 +93,7 @@ bool load(const char *dictionary)
     while(fscanf(fp,"%s",word) != EOF)
     {
         node *ptr = malloc(sizeof(node));
-    //     num_words++;
+         num_words++;
     //     for (int i =0; word[i] != '\0'; i++)
     //     {
     //         word[i] = tolower(word[i]);
