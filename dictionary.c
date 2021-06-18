@@ -20,7 +20,7 @@ node;
 // Number of buckets in hash table
 const unsigned int N = 10001;
 bool loaded_dict;
-unsigned num_words;
+unsigned num_words = 0;
 
 // Hash table
 node *table[N];
