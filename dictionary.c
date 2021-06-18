@@ -35,9 +35,9 @@ bool check(const char *word)
     //ptr = malloc(sizeof(node));
     if (table[hashval] != NULL)
     {
-        node* ptr = table[hashval];
+        node *ptr = table[hashval];
         //printf("searchword: %s,hashval: %d\n",s_word,hashval);
-        while(ptr != NULL)
+        while (ptr != NULL)
         {
             if (strcasecmp(ptr->word, word) == 0)
             {
@@ -62,7 +62,7 @@ unsigned int hash(const char *word)
 
     for (int i = 0; word[i] != '\0'; i++)
     {
-            s_word[i] = tolower(s_word[i]);
+        s_word[i] = tolower(s_word[i]);
     }
     for (int i = 0; s_word[i] != '\0'; i++)
     {
@@ -79,38 +79,33 @@ bool load(const char *dictionary)
     // TODO
     FILE *fp;
     char word[LENGTH + 1];
-    fp = fopen(dictionary,"r");
+    fp = fopen(dictionary, "r");
     if (fp == NULL)
     {
         return false;
     }
 
-    // for (int i = 0; i < N; i++)
-    // {
-    //     table[i] = NULL;
-    // }
 
-    while(fscanf(fp,"%s",word) != EOF)
+    while (fscanf(fp, "%s", word) != EOF)
     {
         node *ptr = malloc(sizeof(node));
-         num_words++;
-    //     for (int i =0; word[i] != '\0'; i++)
-    if (ptr == NULL)
-    {
-        return false;
-    }
-    strcpy(ptr->word, word);
-    ptr -> next = NULL;
-    int hashval = hash(word);
-    if (table[hashval] == NULL)
-    {
-        table[hashval] = ptr;
-    }
-    else
-    {
-        ptr -> next = table[hashval];
-        table[hashval] = ptr;
-    }
+        num_words++;
+        if (ptr == NULL)
+        {
+            return false;
+        }
+        strcpy(ptr->word, word);
+        ptr -> next = NULL;
+        int hashval = hash(word);
+        if (table[hashval] == NULL)
+        {
+            table[hashval] = ptr;
+        }
+        else
+        {
+            ptr -> next = table[hashval];
+            table[hashval] = ptr;
+        }
     }
 
     fclose(fp);
