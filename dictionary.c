@@ -40,7 +40,7 @@ bool check(const char *word)
     int hashval = hash(s_word);
     ptr = malloc(sizeof(struct node));
     ptr = table[hashval];
-    printf("searchword: %s,hashval: %d\n",s_word,hashval);
+    //printf("searchword: %s,hashval: %d\n",s_word,hashval);
     while(ptr != NULL)
     {
         if (strcmp(ptr->word,s_word) == 0)
@@ -90,7 +90,7 @@ bool load(const char *dictionary)
             word[i] = tolower(word[i]);
         }
         int hashval =  hash(word);
-        //printf("dicword: %s,hashval: %d\n",word,hashval);
+        printf("dicword: %s,hashval: %d\n",word,hashval);
         strcpy(ptr->word, word);
         ptr->next = table[hashval];
         table[hashval] = ptr;
