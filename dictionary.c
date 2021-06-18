@@ -38,7 +38,7 @@ bool check(const char *word)
     {
             s_word[i] = tolower(word[i]);
     }
-    //ptr = malloc(sizeof(struct node));
+    ptr = malloc(sizeof(struct node));
     ptr = table[hashval];
     while(ptr != NULL)
     {
@@ -49,7 +49,7 @@ bool check(const char *word)
         }
         ptr = ptr->next;
     }
-    //free(ptr);
+    free(ptr);
     return false;
 }
 
@@ -120,6 +120,7 @@ bool unload(void)
     for (int i = 0; i < N; i++)
     {
         struct node *ptr;
+        ptr = malloc(sizeof(struct node));
         ptr = table[i];
         while (ptr != NULL)
         {
@@ -127,6 +128,7 @@ bool unload(void)
             ptr = ptr->next;
             free(tmp);
         }
+        free(ptr);
     }
     return true;
 
