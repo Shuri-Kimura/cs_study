@@ -31,14 +31,7 @@ bool check(const char *word)
 {
     // TODO
     //struct node *ptr;
-    char s_word[strlen(word)];
-    strcpy(s_word, word);
-
-    for (int i = 0; word[i] != '\0'; i++)
-    {
-            s_word[i] = tolower(s_word[i]);
-    }
-    int hashval = hash(s_word);
+    int hashval = hash(word);
     //ptr = malloc(sizeof(node));
     if (table[hashval] != NULL)
     {
@@ -46,7 +39,7 @@ bool check(const char *word)
         //printf("searchword: %s,hashval: %d\n",s_word,hashval);
         while(ptr != NULL)
         {
-            if (strcasecmp(ptr->word,s_word) == 0)
+            if (strcasecmp(ptr->word, word) == 0)
             {
                 //free(ptr);
                 return true;
@@ -64,9 +57,16 @@ unsigned int hash(const char *word)
     // TODO
     int hashval = 0;
     int shift = 1;
+    char s_word[LENGTH + 1];
+    strcpy(s_word, word);
+
     for (int i = 0; word[i] != '\0'; i++)
     {
-        hashval += word[i] << shift;
+            s_word[i] = tolower(s_word[i]);
+    }
+    for (int i = 0; s_word[i] != '\0'; i++)
+    {
+        hashval += s_word[i] << shift;
         shift++;
     }
 
@@ -86,30 +86,43 @@ bool load(const char *dictionary)
         return false;
     }
 
-    for (int i = 0; i < N; i++)
-    {
-        table[i] = NULL;
-    }
+    // for (int i = 0; i < N; i++)
+    // {
+    //     table[i] = NULL;
+    // }
     ptr = malloc(sizeof(node));
 
     while(fscanf(fp,"%s",word) != EOF)
     {
-        num_words++;
-        for (int i =0; word[i] != '\0'; i++)
-        {
-            word[i] = tolower(word[i]);
-        }
-        int hashval =  hash(word);
-        //printf("dicword: %s,hashval: %d\n",word,hashval);
-        strcpy(ptr->word, word);
-        ptr->next = table[hashval];
+    //     num_words++;
+    //     for (int i =0; word[i] != '\0'; i++)
+    //     {
+    //         word[i] = tolower(word[i]);
+    //     }
+    //     int hashval =  hash(word);
+    //     //printf("dicword: %s,hashval: %d\n",word,hashval);
+    //
+    strcpy(ptr->word, word);
+    //     ptr->next = table[hashval];
+    //     table[hashval] = ptr;
+    // }
+
+    if (ptr == NULL)
+    {
+        return false;
+    }
+    ptr -> next = NULL;
+    int hashval = hash(word);
+    if (table[hashval] == NULL)
+    {
         table[hashval] = ptr;
     }
-
-    // if (ptr == NULL)
-    // {
-    //     return false;
-    // }
+    else
+    {
+        ptr -> next = table[hashval];
+        table[hashval] = ptr;
+    }
+    }
 
     fclose(fp);
     loaded_dict = true;
