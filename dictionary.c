@@ -45,6 +45,7 @@ bool check(const char *word)
         //printf("searchword: %s,hashval: %d\n",s_word,hashval);
         while(ptr != NULL)
         {
+            printf("<<<<<>>>>")
             if (strcmp(ptr->word,s_word) == 0)
             {
                 //free(ptr);
