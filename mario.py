@@ -3,7 +3,10 @@ def main():
     height = -1
     # input number
     while (True):
-        height = int(input("Height: "))
+        try:
+            height = int(input("Height: "))
+        except:
+            continue
         if (height <= 8 or height >= 1):
             break;
 
