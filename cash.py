@@ -8,7 +8,10 @@ def main():
     res = 0;
     # inpput change
     while (True):
-        change = float(input("Change owed: "))
+        try:
+            change = float(input("Change owed: "))
+        except:
+            continue
         if (change >= 0):
             break
     # from doll to cent
