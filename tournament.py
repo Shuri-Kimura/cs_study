@@ -22,13 +22,12 @@ def main():
             row["rating"] = int(row["rating"])
             teams.append(row)
             counts[row["team"]] = 0
-    #print(teams)
+    # print(teams)
 
     # TODO: Simulate N tournaments and keep track of win counts
     for i in range(0, N):
         win_team = simulate_tournament(teams)
         counts[win_team] += 1
-
 
     # Print each team's chances of winning, according to simulation
     for team in sorted(counts, key=lambda team: counts[team], reverse=True):
@@ -65,7 +64,6 @@ def simulate_tournament(teams):
             return teams[0]["team"]
         else:
             teams = simulate_round(teams)
-
 
 
 if __name__ == "__main__":
