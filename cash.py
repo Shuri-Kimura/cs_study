@@ -1,11 +1,11 @@
 
 def main():
     # set number
-    q_num = 0;
-    d_num = 0;
-    n_num = 0;
-    p_num = 0;
-    res = 0;
+    q_num = 0
+    d_num = 0
+    n_num = 0
+    p_num = 0
+    res = 0
     # inpput change
     while (True):
         try:
@@ -38,6 +38,7 @@ def main():
 
     # output number
     print(q_num + d_num + n_num + p_num)
+
 
 if __name__ == "__main__":
     main()
