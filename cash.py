@@ -17,17 +17,17 @@ def main():
 
     # calculate quoter number
     if (cents >= 25):
-        q_num = cents / 25
+        q_num = int(cents / 25)
         res = cents % 25
 
     # calculate dime number
     if (res >= 10):
-        d_num = res / 10
+        d_num = int(res / 10)
         res %= 10
 
     # calculate nickel number
     if (res >= 5):
-        n_num = res / 5
+        n_num = int(res / 5)
         res %= 5
 
     # calculate peny number
