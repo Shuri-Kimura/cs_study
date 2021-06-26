@@ -7,7 +7,7 @@ def main():
             height = int(input("Height: "))
         except:
             continue
-        if (height <= 8 or height >= 1):
+        if (height <= 8 and height >= 1):
             break;
 
     # output block number:8
