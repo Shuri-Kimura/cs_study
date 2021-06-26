@@ -8,7 +8,7 @@ def main():
         except:
             continue
         if (height <= 8 and height >= 1):
-            break;
+            break
 
     # output block number:8
     if (height == 8):
@@ -34,6 +34,7 @@ def main():
     # output block number:1
     else:
         print("#  #")
+
 
 if __name__ == "__main__":
     main()
