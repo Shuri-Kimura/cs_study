@@ -55,47 +55,64 @@ def search(list_name, dict_, line):
 def main():
     if len(sys.argv) != 3:
         sys.exit("Usage: python dna.py data.csv sequence.txt")
-    with open(sys.argv[1], "r") as f:
-        reader = DictReader(f)
-        dict_list = list(reader)
-    with open(sys.argv[2], "r") as f:
-        lines_ = f.readlines()
-    lines = []
-    for line in lines_:
-        line = line.replace("\n","")
-        lines.append(line)
+    # read the dna sequence from the file
+    with open(argv[2]) as DNAfile:
+        DNAreader = reader(DNAfile)
+        for row in DNAreader:
+            DNAlist = row
+    #store in string
+    DNA = DNAlist[0]
+    #create a dictionary
+    sequences = {}
+    with open(argv[1]) as peoplefile:
+        people = reader(peoplefile)
+        for row in people:
+            DNASequences = row
+            DNASequences.pop(0)
+            break
 
+    for item in DNASequences:
+        sequences[item] = 1
 
-    # For each STR, compute longest run of consecutive repeats in      sequence
-    max_counts = []
-    for i in range(1, len(reader.fieldnames)):
-        STR = reader.fieldnames[i]
-        max_counts.append(0)
-    # Loop through sequence to find STR
-        for j in range(len(lines)):
-            STR_count = 0
-            # If match found, start counting repeats
-            if lines[j:(j + len(STR))] == STR:
-                k = 0
-                while lines[(j + k):(j + k + len(STR))] == STR:
-                    STR_count += 1
-                    k += len(STR)
-                # If new maximum of repeats, update max_counts
-                if STR_count > max_counts[i - 1]:
-                    max_counts[i - 1] = STR_count
+    # if repetitions of the values from sequence dictionary are found, count
+    for key in sequences:
+        l = len(key)
+        tempMax = 0
+        temp = 0
+        for i in range(len(DNA)):
+            # after having counted a sequence
+            # skip at the end of it to avoid counting again
+            while temp > 0:
+                temp -= 1
+                continue
+    # if the segment of dna corresponds to the key &&
+            #there is a repetition of it
+            #increment counter
+            if DNA[i: i + l] == key:
+                while DNA[i - l: i] == DNA[i: i + l]:
+                    temp += 1
+                    i += l
+    # compare the value to the previous longest sequence &&
+                # if it is longer it becomes the new max
+                if temp > tempMax:
+                    tempMax = temp
+    # store the longest sequences in the dictionary using the correspondent key
+        sequences[key] += tempMax
 
-    # Compare against data
-    for i in range(len(dict_list)):
-        matches = 0
-        for j in range(1, len(reader.fieldnames)):
-            if int(max_counts[j - 1]) == int(dict_list[i]  [reader.fieldnames[j]]):
-                matches += 1
-            if matches == (len(reader.fieldnames) - 1):
-                print(dict_list[i]['name'])
-                exit(0)
-    print("No match")
-    # print(search(list_name , dict_, line))
-
+    with open(argv[1], newline='') as peoplefile:
+        people = DictReader(peoplefile)
+        for person in people:
+            match = 0
+            # compares the sequences to every person and prints name
+            # leave the program if there is a match
+            for DNA in sequences:
+                if sequences[DNA] == int(person[DNA]):
+                    match += 1
+            if match == len(sequences):
+                print(person['name'])
+                exit()
+        #otherwise, no match
+        print("No match")
 
 
 if __name__ == "__main__":
