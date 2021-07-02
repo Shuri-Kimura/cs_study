@@ -22,7 +22,7 @@ def judge(answer, dict_):
     if key in dict_.keys():
             return dict_[key]
     # answer_ = answer
-    print(answer)
+    # print(answer)
     # for i, ans in enumerate(answer):
     #     tmp = ans
     #     answer_[i] = ans - 1
