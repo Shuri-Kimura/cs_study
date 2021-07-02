@@ -56,7 +56,7 @@ def main():
     if len(sys.argv) != 3:
         sys.exit("Usage: python dna.py data.csv sequence.txt")
     # read the dna sequence from the file
-    with open(argv[2]) as DNAfile:
+    with open(sys.argv[2]) as DNAfile:
         DNAreader = reader(DNAfile)
         for row in DNAreader:
             DNAlist = row
@@ -64,7 +64,7 @@ def main():
     DNA = DNAlist[0]
     #create a dictionary
     sequences = {}
-    with open(argv[1]) as peoplefile:
+    with open(sys.argv[1]) as peoplefile:
         people = reader(peoplefile)
         for row in people:
             DNASequences = row
@@ -99,7 +99,7 @@ def main():
     # store the longest sequences in the dictionary using the correspondent key
         sequences[key] += tempMax
 
-    with open(argv[1], newline='') as peoplefile:
+    with open(sys.argv[1], newline='') as peoplefile:
         people = DictReader(peoplefile)
         for person in people:
             match = 0
