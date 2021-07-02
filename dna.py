@@ -10,6 +10,8 @@ def count_str(line, name):
             count += 1
         if line_[i] != line_[i + 1] and line_[i - 1] == line_[i] and line_[i - 1] == "0":
             count += 1
+    if count == 0 and "0" in line_:
+        count = 1
     return count
 
 # line = "0000tatatatatat"
@@ -20,7 +22,7 @@ def judge(answer, dict_):
     if key in dict_.keys():
             return dict_[key]
     # answer_ = answer
-    # print(answer)
+    print(answer)
     # for i, ans in enumerate(answer):
     #     tmp = ans
     #     answer_[i] = ans - 1
