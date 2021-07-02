@@ -10,18 +10,30 @@ def count_str(line, name):
     return count
 
 
+def judge(answer, dict_):
+    key = ":".join([str(n) for n in answer])
+    if key in dict_.keys():
+            return dict_[key]
+    answer_ = answer
+    for i, ans in enumerate(answer):
+        tmp = ans
+        answer_[i] = ans - 1
+        key = ":".join([str(n) for n in answer_])
+        if key in dict_.keys():
+            return dict_[key]
+        answer_[i] = ans
+    return answer
+    return "No match"
+
+
 def search(list_name, dict_, line):
     answer = []
 
     for name in list_name:
-        num = str(count_str(line, name))
+        num = count_str(line, name)
         answer.append(num)
-    key = ":".join(answer)
-    if key in dict_.keys():
-        return dict_[key]
-    else:
-        # return answer
-        return "No match"
+    return judge(answer, dict_)
+
 
 def main():
     if len(sys.argv) != 3:
