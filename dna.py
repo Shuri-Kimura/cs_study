@@ -1,8 +1,9 @@
 import sys
 from csv import reader, DictReader
 
+
 def count_str(line, name):
-    line_ = line.replace(name,"0")
+    line_ = line.replace(name, "0")
     # print(line)
     count = 0
     for i in range(0, len(line_) - 1):
@@ -26,23 +27,6 @@ def judge(answer, dict_):
     return "No match"
 
 
-
-    key = ":".join([str(n) for n in answer])
-    if key in dict_.keys():
-            return dict_[key]
-    # answer_ = answer
-    print(answer)
-    # for i, ans in enumerate(answer):
-    #     tmp = ans
-    #     answer_[i] = ans - 1
-    #     key = ":".join([str(n) for n in answer_])
-    #     if key in dict_.keys():
-    #         return dict_[key]
-    #     answer_[i] = ans
-    # return answer
-    return "No match"
-
-
 def search(list_name, dict_, line):
     answer = []
 
@@ -60,9 +44,9 @@ def main():
         DNAreader = reader(DNAfile)
         for row in DNAreader:
             DNAlist = row
-    #store in string
+    # store in string
     DNA = DNAlist[0]
-    #create a dictionary
+    # create a dictionary
     sequences = {}
     with open(sys.argv[1]) as peoplefile:
         people = reader(peoplefile)
@@ -86,8 +70,8 @@ def main():
                 temp -= 1
                 continue
     # if the segment of dna corresponds to the key &&
-            #there is a repetition of it
-            #increment counter
+            # there is a repetition of it
+            # increment counter
             if DNA[i: i + l] == key:
                 while DNA[i - l: i] == DNA[i: i + l]:
                     temp += 1
@@ -111,7 +95,7 @@ def main():
             if match == len(sequences):
                 print(person['name'])
                 exit()
-        #otherwise, no match
+        # otherwise, no match
         print("No match")
 
 
