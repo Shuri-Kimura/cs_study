@@ -1,15 +1,26 @@
 import sys
 import csv
 
+def count_str(line, name):
+    line = line.replace(name,"0")
+    count = 1
+    for i in range(0, len(line) - 1):
+        if line[i] == line[i + 1] and line[i] == "0":
+            count += 1
+    return count
+
+
 def search(list_name, dict_, line):
     answer = []
+
     for name in list_name:
-        num = str(line.count(name))
+        num = str(count_str(line, name))
         answer.append(num)
     key = ":".join(answer)
     if key in dict_.keys():
         return dict_[key]
     else:
+        # return answer
         return "No match"
 
 def main():
