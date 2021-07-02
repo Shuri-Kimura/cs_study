@@ -2,11 +2,14 @@ import sys
 import csv
 
 def count_str(line, name):
-    line = line.replace(name,"0")
+    line_ = line.replace(name,"0")
+    # print(line)
     count = 1
-    for i in range(0, len(line) - 1):
-        if line[i] == line[i + 1] and line[i] == "0":
+    for i in range(0, len(line_) - 1):
+        if line_[i] == line_[i + 1] and line_[i] == "0":
             count += 1
+    if line_[len(line_) - 1] == "0":
+        count += 1
     return count
 
 
@@ -22,7 +25,7 @@ def judge(answer, dict_):
         if key in dict_.keys():
             return dict_[key]
         answer_[i] = ans
-    # return answer
+    return answer
     return "No match"
 
 
