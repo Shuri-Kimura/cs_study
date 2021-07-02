@@ -4,28 +4,31 @@ import csv
 def count_str(line, name):
     line_ = line.replace(name,"0")
     # print(line)
-    count = 1
+    count = 0
     for i in range(0, len(line_) - 1):
         if line_[i] == line_[i + 1] and line_[i] == "0":
             count += 1
-    if line_[len(line_) - 1] == "0":
-        count += 1
+        if line_[i] != line_[i + 1] and line_[i - 1] == line_[i] and line_[i - 1] == "0":
+            count += 1
     return count
 
+# line = "0000tatatatatat"
+# print(count_str(line, "0"))
 
 def judge(answer, dict_):
     key = ":".join([str(n) for n in answer])
     if key in dict_.keys():
             return dict_[key]
-    answer_ = answer
-    for i, ans in enumerate(answer):
-        tmp = ans
-        answer_[i] = ans - 1
-        key = ":".join([str(n) for n in answer_])
-        if key in dict_.keys():
-            return dict_[key]
-        answer_[i] = ans
-    return answer
+    # answer_ = answer
+    # print(answer)
+    # for i, ans in enumerate(answer):
+    #     tmp = ans
+    #     answer_[i] = ans - 1
+    #     key = ":".join([str(n) for n in answer_])
+    #     if key in dict_.keys():
+    #         return dict_[key]
+    #     answer_[i] = ans
+    # return answer
     return "No match"
 
 
