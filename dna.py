@@ -14,15 +14,24 @@ def count_str(line, name):
         count = 1
     return count
 
-# line = "0000tatatatatat"
-# print(count_str(line, "0"))
 
 def judge(answer, dict_):
+    for k in dict_.keys():
+        flag = 0
+        for an, n in zip(answer, k.split(":")):
+            if an >= int(n):
+                flag += 1
+        if flag >= len(answer):
+            return dict_[k]
+    return "No match"
+
+
+
     key = ":".join([str(n) for n in answer])
     if key in dict_.keys():
             return dict_[key]
     # answer_ = answer
-    # print(answer)
+    print(answer)
     # for i, ans in enumerate(answer):
     #     tmp = ans
     #     answer_[i] = ans - 1
