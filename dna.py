@@ -65,6 +65,7 @@ def main():
         line = line.replace("\n","")
         lines.append(line)
 
+
     # For each STR, compute longest run of consecutive repeats in      sequence
     max_counts = []
     for i in range(1, len(reader.fieldnames)):
@@ -83,21 +84,6 @@ def main():
                 if STR_count > max_counts[i - 1]:
                     max_counts[i - 1] = STR_count
 
-    for i in range(1, len(reader.fieldnames)):
-        STR = reader.fieldnames[i]
-        max_counts.append(0)
-        # Loop through sequence to find STR
-        for j in range(len(lines)):
-            STR_count = 0
-            # If match found, start counting repeats
-            if lines[j:(j + len(STR))] == STR:
-                k = 0
-                while lines[(j + k):(j + k + len(STR))] == STR:
-                    STR_count += 1
-                    k += len(STR)
-                # If new maximum of repeats, update max_counts
-                if STR_count > max_counts[i - 1]:
-                    max_counts[i - 1] = STR_count
     # Compare against data
     for i in range(len(dict_list)):
         matches = 0
