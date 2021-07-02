@@ -28,7 +28,7 @@ def main():
     elif (score < 1): # case score < 1
         print("Before Grade 1")
     else: # case 1 <= score < 16
-        print("Grade "+score)
+        print("Grade "+ str(score))
 
 if __name__ == "__main__":
     main()
