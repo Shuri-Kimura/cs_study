@@ -1,1 +1,1 @@
-SELECT count(*) FROM rating WHERE rating = 10.0;
+SELECT count(*) FROM ratings WHERE rating = 10.0;
