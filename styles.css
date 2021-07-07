@@ -1,0 +1,40 @@
+.jumbotron {
+    background-color: #FF4500;
+    color: #fff;
+    margin-bottom: 2rem;
+    padding: 2rem 1rem;
+    text-align: center;
+}
+
+h1.output {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 100px;
+    text-align: center;
+    background: linear-gradient(to right, orange , yellow, green, cyan, blue, violet);
+	background: -webkit-linear-gradient(left, orange , yellow, green, cyan, blue, violet);
+	background: -o-linear-gradient(right, orange, yellow, green, cyan, blue, violet);
+	background: -moz-linear-gradient(right, orange, yellow, green, cyan, blue, violet);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-fill-color: transparent;
+}
+
+.subtitle {
+    color: #FF4F50;
+    padding: 1rem 1rem;
+    text-align: left;
+}
+.message {
+    text-align: center;
+    margin: auto;
+}
+
+div.block {
+    margin: 1000px 1000px 1000px 20px;
+}
+
+/*button {*/
+
+
+/*}*/
