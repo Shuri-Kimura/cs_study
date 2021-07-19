@@ -174,7 +174,7 @@ def register():
 
         usernames = db.execute("SELECT username FROM users WHERE username = ?", request.form.get("username"))
         if usernames:
-            return apology("Already registered.")
+            return apology("Already registered.", 200)
         else:
             password = generate_password_hash(request.form.get('password'))
             register_ = db.execute("INSERT INTO users(username, hash) VALUES(?, ?)", request.form.get("username"), password)
