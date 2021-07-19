@@ -183,7 +183,7 @@ def register():
             return apology("Already registered.")
         else:
             password = generate_password_hash(request.form.get('password'))
-            register_ = db.execute("INSERT INTO users(username, hash) VALUES(?, ?)", request.form.get("username") , password)
+            register_ = db.execute("INSERT INTO users(username, hash) VALUES(?, ?)", request.form.get("username"), password)
             session["user_id"] = register_
             return redirect("/")
     else:
