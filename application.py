@@ -172,12 +172,12 @@ def register():
         elif request.form.get("password") != request.form.get("confirmation"):
             return apology("The password and the confirmation password are different.")
 
-        usernames = db.execute("SELECT username FROM users WHERE username = ?", request.form.get("username"))
+        usernames = db.execute("SELECT username FROM users WHERE username = ?", request.form.get("username").upper())
         if usernames:
             return apology("Already registered.", 200)
         else:
             password = generate_password_hash(request.form.get('password'))
-            register_ = db.execute("INSERT INTO users(username, hash) VALUES(?, ?)", request.form.get("username"), password)
+            register_ = db.execute("INSERT INTO users(username, hash) VALUES(?, ?)", request.form.get("username").upper() , password)
             session["user_id"] = register_
             return redirect("/")
     else:
