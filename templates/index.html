@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Main
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <table class="table">
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+            {% for trans in transcations %}
+                <tr>
+                    <td>{{ trans['symbol'] }}</td>
+                    <td>{{ trans['name'] }}</td>
+                    <td>{{ trans['quantity'] }}</td>
+                    <td>{{ usd(trans['price']) }}</td>
+                    <td>{{ usd(trans['price'] * trans['quantity']) }}</td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td>CASH</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{ usd(cash) }}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{ usd(total) }}</td>
+            </tr>
+        </table>
+    </div>
+{% endblock %}
