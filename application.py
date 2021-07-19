@@ -80,16 +80,16 @@ def buy():
         cash = db.execute("SELECT cash FROM users WHERE id = ?", session["user_id"])[0]["cash"]
         if money > cash:
             return apology("you don't have enough money.")
-        db.execute("UPDATE users SET cash=cash - ? WHERE id= ?", money, session["user_id"]);
+        db.execute("UPDATE users SET cash=cash - ? WHERE id= ?", money, session["user_id"])
 
         cul_transcations = db.execute("SELECT quantity FROM transcations WHERE symbol = ? ", quote["symbol"])
         db.execute("INSERT INTO story (user_id, symbol, quantity, price, date) VALUES ( ?, ?, ?, ?, ?)",
-                    session["user_id"], quote["symbol"], int(shares), quote['price'], datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+                   session["user_id"], quote["symbol"], int(shares), quote['price'], datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
         if not cul_transcations:
             db.execute("INSERT INTO transcations (user_id, name, symbol, quantity, price) VALUES (?, ?, ?, ?, ?)",
                         session["user_id"], quote["name"], quote["symbol"], int(shares), quote['price'])
         else:
-            db.execute("UPDATE transcations SET quantity=quantity + ? WHERE symbol = ?", int(shares), quote["symbol"]);
+            db.execute("UPDATE transcations SET quantity=quantity + ? WHERE symbol = ?", int(shares), quote["symbol"])
         return redirect("/")
     else:
         return render_template("buy.html")
@@ -212,7 +212,7 @@ def sell():
         add_transaction = db.execute("INSERT INTO story (user_id, symbol, quantity, price, date) VALUES ( ?, ?, ?, ?, ?)",
                                      session["user_id"], quote["symbol"], -int(request.form.get("shares")), quote['price'], datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
         db.execute("UPDATE transcations SET quantity= quantity - ? WHERE symbol= ? ",
-                    int(request.form.get("shares")), quote["symbol"])
+                   int(request.form.get("shares")), quote["symbol"])
 
         return redirect("/")
 
