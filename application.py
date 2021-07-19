@@ -43,6 +43,7 @@ db = SQL("sqlite:///finance.db")
 if not os.environ.get("API_KEY"):
     raise RuntimeError("API_KEY not set")
 
+
 @app.route("/")
 @login_required
 def index():
@@ -82,9 +83,11 @@ def buy():
         db.execute("UPDATE users SET cash=cash - ? WHERE id= ?", money, session["user_id"]);
 
         cul_transcations = db.execute("SELECT quantity FROM transcations WHERE symbol = ? ", quote["symbol"])
-        db.execute("INSERT INTO story (user_id, symbol, quantity, price, date) VALUES ( ?, ?, ?, ?, ?)", session["user_id"], quote["symbol"], int(shares), quote['price'], datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+        db.execute("INSERT INTO story (user_id, symbol, quantity, price, date) VALUES ( ?, ?, ?, ?, ?)",
+                    session["user_id"], quote["symbol"], int(shares), quote['price'], datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
         if not cul_transcations:
-            db.execute("INSERT INTO transcations (user_id, name, symbol, quantity, price) VALUES (?, ?, ?, ?, ?)",session["user_id"], quote["name"], quote["symbol"], int(shares), quote['price'])
+            db.execute("INSERT INTO transcations (user_id, name, symbol, quantity, price) VALUES (?, ?, ?, ?, ?)",
+                        session["user_id"], quote["name"], quote["symbol"], int(shares), quote['price'])
         else:
             db.execute("UPDATE transcations SET quantity=quantity + ? WHERE symbol = ?", int(shares), quote["symbol"]);
         return redirect("/")
@@ -195,27 +198,27 @@ def sell():
         if not request.form.get("symbol") or not request.form.get("shares"):
             return apology("There is no input.4")
         if int(request.form.get("shares")) <= 0:
-                return apology("Share should be 1 or more.")
+            return apology("Share should be 1 or more.")
 
         have = db.execute("SELECT quantity FROM transcations WHERE symbol = ?", request.form.get("symbol"))
         print(have)
         if int(request.form.get("shares")) > have[0]['quantity']:
-                return apology("They are not large enough.")
+            return apology("They are not large enough.")
         quote = lookup(request.form.get("symbol"))
         if quote == None:
             return apology("You don't have this symbol.")
         money = int(request.form.get("shares")) * quote['price']
         db.execute("UPDATE users SET cash=cash+ ? WHERE id = ?", money, session["user_id"])
-        add_transaction = db.execute("INSERT INTO story (user_id, symbol, quantity, price, date) VALUES ( ?, ?, ?, ?, ?)", session["user_id"], quote["symbol"], -int(request.form.get("shares")), quote['price'], datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
-        db.execute("UPDATE transcations SET quantity= quantity - ? WHERE symbol= ? ", int(request.form.get("shares")), quote["symbol"]);
+        add_transaction = db.execute("INSERT INTO story (user_id, symbol, quantity, price, date) VALUES ( ?, ?, ?, ?, ?)",
+                                     session["user_id"], quote["symbol"], -int(request.form.get("shares")), quote['price'], datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+        db.execute("UPDATE transcations SET quantity= quantity - ? WHERE symbol= ? ",
+                    int(request.form.get("shares")), quote["symbol"])
 
         return redirect("/")
 
     else:
         aveil = db.execute("SELECT symbol FROM transcations")
-        return render_template("sell.html", aveil = aveil)
-
-
+        return render_template("sell.html", aveil=aveil)
 
 
 def errorhandler(e):
