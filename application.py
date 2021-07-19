@@ -6,6 +6,7 @@ from flask_session import Session
 from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
+from datetime import datetime
 
 from helpers import apology, login_required, lookup, usd
 
@@ -46,9 +47,9 @@ if not os.environ.get("API_KEY"):
 @login_required
 def index():
     """Show portfolio of stocks"""
-    cash = db.execute("SELECT cash FROM users WHERE ?", session["user_id"])[0]["cash"]
+    cash = db.execute("SELECT cash FROM users WHERE id= ?", session["user_id"])[0]["cash"]
 
-    transcations = db.execute("SELECT * FROM transcations WHERE ?", session["user_id"])
+    transcations = db.execute("SELECT * FROM transcations WHERE user_id= ?", session["user_id"])
     if not transcations:
         return apology("you have no transcations")
     # (user_id, name, symbol, quantity, price)
@@ -75,9 +76,9 @@ def buy():
         cash = db.execute("SELECT cash FROM users WHERE id = ?", session["user_id"])[0]["cash"]
         if money > cash:
             return apology("you don't have enough money.")
-        db.execute("UPDATE users SET cash=cash - ? WHERE ?", money, session["user_id"]);
+        db.execute("UPDATE users SET cash=cash - ? WHERE id= ?", money, session["user_id"]);
 
-        cul_transcations = db.execute("SELECT quantity FROM transcations WHERE symbol = ?", quote["symbol"])
+        cul_transcations = db.execute("SELECT quantity FROM transcations WHERE symbol = ? ", quote["symbol"])
         db.execute("INSERT INTO story (user_id, symbol, quantity, price, date) VALUES ( ?, ?, ?, ?, ?)", session["user_id"], quote["symbol"], int(request.form.get("shares")), quote['price'], datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
         if not cul_transcations:
             db.execute("INSERT INTO transcations (user_id, name, symbol, quantity, price) VALUES (?, ?, ?, ?, ?)",session["user_id"], quote["name"], quote["symbol"], int(request.form.get("shares")), quote['price'])
@@ -176,8 +177,8 @@ def register():
             return apology("Already registered.")
         else:
             password = generate_password_hash(request.form.get('password'))
-            register = db.execute("INSERT INTO users (username, hash) VALUES(?, ?)", request.form.get("username"), password)
-            session["user_id"] = register
+            register_ = db.execute("INSERT INTO users(username, hash) VALUES(?, ?)", request.form.get("username"), password)
+            session["user_id"] = register_
             return redirect("/")
     else:
         return render_template("register.html")
