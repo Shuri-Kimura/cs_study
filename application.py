@@ -67,7 +67,8 @@ def buy():
     if request.method == "POST":
         if not request.form.get("symbol") or not request.form.get("shares"):
             return apology("There is no input1.")
-        if ("." in request.form.get("shares")) or ("-" in request.form.get("shares")):
+        if not request.form.get("shares").isdigit():
+        #("." in request.form.get("shares")) or ("-" in request.form.get("shares")) or ():
             return apology("need integer.")
         shares = request.form.get("shares")
         if int(shares) <= 0:
