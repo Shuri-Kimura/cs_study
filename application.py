@@ -87,7 +87,7 @@ def buy():
                    session["user_id"], quote["symbol"], int(shares), quote['price'], datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
         if not cul_transcations:
             db.execute("INSERT INTO transcations (user_id, name, symbol, quantity, price) VALUES (?, ?, ?, ?, ?)",
-                        session["user_id"], quote["name"], quote["symbol"], int(shares), quote['price'])
+                       session["user_id"], quote["name"], quote["symbol"], int(shares), quote['price'])
         else:
             db.execute("UPDATE transcations SET quantity=quantity + ? WHERE symbol = ?", int(shares), quote["symbol"])
         return redirect("/")
