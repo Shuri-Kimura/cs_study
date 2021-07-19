@@ -166,11 +166,11 @@ def quote():
 def register():
     """Register user"""
     if request.method == "POST":
-        if not request.form.get("username") or not request.form.get("password") or not request.form.get("confirmation"):
-            return apology("There is no input.3", 200)
+        if (not request.form.get("username")) or (not request.form.get("password")) or (not request.form.get("confirmation")):
+            return apology("There is no input.3")
 
         elif request.form.get("password") != request.form.get("confirmation"):
-            return apology("The password and the confirmation password are different.", 200)
+            return apology("The password and the confirmation password are different.")
 
         usernames = db.execute("SELECT username FROM users WHERE username = ?", request.form.get("username"))
         if usernames:
