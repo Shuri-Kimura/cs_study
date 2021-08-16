@@ -1,6 +1,6 @@
 # シフト作成ツール
-#### Video Demo: <https://youtu.be/IqJsYm_kp3o>
-#### Description: 下に記述.
+
+### Video Demo: <https://youtu.be/IqJsYm_kp3o>
 
 ## Requirement:
 
@@ -101,3 +101,49 @@ Registerボタンから、新しい従業員の登録を行います。また従
 #### 	users.db
 
 ​			従業員のデータベースです。personalテーブルがありカラムは（id, username, hash, shift）となっています。shiftにはその従業員が出られる日付が入っています。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
