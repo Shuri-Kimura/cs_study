@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Inquire
+{% endblock %}
+{% block main %}
+  <h3>シフト表ダウンロード</h3>
+  <input type="button" class="btn-square-raised" id="xlsx" value="ダウンロード" onclick="func1()">
+  <script language="javascript" type="text/javascript">
+
+
+    // function sheet_to_workbook(sheet/*:Worksheet*/, opts)/*:Workbook*/ {
+    //   var n = opts && opts.sheet ? opts.sheet : "シフト候補";
+    //   var sheets = {}; sheets[n] = sheet;
+    //   return { SheetNames: [n], Sheets: sheets };
+    // }
+
+    // function aoa_to_workbook(data/*:Array<Array<any> >*/, opts)/*:Workbook*/ {
+    //   return sheet_to_workbook(XLSX.utils.aoa_to_sheet(data, opts), opts);
+    // }
+
+
+    // function s2ab(s) {
+    //   var buf = new ArrayBuffer(s.length);
+    //   var view = new Uint8Array(buf);
+    //   for (var i = 0; i != s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
+    //     return buf;
+    //   }
+
+    // function func1() {
+    // var write_opts = {
+    //   type: 'binary'
+    // };
+
+    //2次元配列をテーブルエレメントに変換して返す
+    function ARRAY_TO_OBJ(array){
+        // 要素の取得
+        var element = document.createElement("table"); //table生成
+        array.forEach(function (arr) {
+            var row = element.insertRow( -1 ) ; //行追加
+            arr.forEach(function (value) {
+                var cell = row.insertCell() ; //セル追加
+                cell.textContent = value ; //セル1に値セット
+            });
+        });
+        return element
+    }
+
+    function s2ab(s) {
+        var buf = new ArrayBuffer(s.length);
+        var view = new Uint8Array(buf);
+        for (var i = 0; i != s.length; ++i) {
+            view[i] = s.charCodeAt(i) & 0xFF;
+        }
+        return buf;
+    }
+
+
+    var array = {{array|tojson}};
+    var array1 = {{array1|tojson}};
+    function func1() {
+        var wopts = {
+        bookType: 'xlsx',
+        bookSST: false,
+        type: 'binary'
+        };
+
+        var workbook = {SheetNames: [], Sheets: {}};
+
+        var n = 'シフト候補';
+        workbook.SheetNames.push(n);
+        // workbook.Sheets[n] = array;
+        workbook.Sheets[n] = XLSX.utils.table_to_sheet(ARRAY_TO_OBJ(array), wopts); //配列をTableElementに変換してセット
+        var m = '出勤回数';
+        workbook.SheetNames.push(m);
+        workbook.Sheets[m] = XLSX.utils.table_to_sheet(ARRAY_TO_OBJ(array1), wopts); //配列をTableElementに変換してセット
+
+        var wbout = XLSX.write(workbook, wopts);
+
+        saveAs(new Blob([s2ab(wbout)], {type: 'application/octet-stream'}), 'shift.xlsx');
+    }
+  </script>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Shift UL
+{% endblock %}
+{% block main %}
+    <h3>テンプレートダウンロード</h3>
+    <input type="button" class="btn-square-raised" id="xlsx" value="ダウンロード" onclick="func1()">
+    <script language="javascript" type="text/javascript">
+
+
+      function sheet_to_workbook(sheet/*:Worksheet*/, opts)/*:Workbook*/ {
+        var n = opts && opts.sheet ? opts.sheet : "シフトテンプレート";
+        var sheets = {}; sheets[n] = sheet;
+        return { SheetNames: [n], Sheets: sheets };
+      }
+
+
+      function aoa_to_workbook(data/*:Array<Array<any> >*/, opts)/*:Workbook*/ {
+        return sheet_to_workbook(XLSX.utils.aoa_to_sheet(data, opts), opts);
+      }
+
+      function s2ab(s) {
+        var buf = new ArrayBuffer(s.length);
+        var view = new Uint8Array(buf);
+        for (var i = 0; i != s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
+          return buf;
+        }
+
+      function func1() {
+      var write_opts = {
+        type: 'binary'
+      };
+
+
+      var array = {{array|tojson}};
+      var wb = aoa_to_workbook(array);
+      var wb_out = XLSX.write(wb, write_opts);
+
+
+      var blob = new Blob([s2ab(wb_out)], { type: 'application/octet-stream' });
+
+      saveAs(blob, 'defalt.xlsx');
+    }
+    </script>
+  	<h3 class=second>シフトアップロード（{{text}}）</h3>
+  	<form method="POST" action="/shift" enctype="multipart/form-data">
+  	  <input placeholder="データ" name="the_file" type="file"/>
+  	  <input value="送信" class="btn-square-raised" type="submit"/>
+  	</form>
+{% endblock %}
